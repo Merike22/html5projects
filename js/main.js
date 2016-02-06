@@ -9,4 +9,3 @@ function showMood() {
     holder.innerHTML = moodString;
 
 }
-
