@@ -103,12 +103,14 @@ nav a:hover {
 color: black;
 }
 
+
 main {
 padding: 20px;
 
 }
 
 section#main {
+position: relative;
 width: 70%;
 float: left;
 }
@@ -121,6 +123,12 @@ float: right;
 footer {
 padding: 10px;
 text-align: center;
+}
+
+#holder {
+position: absolute;
+top: 10px;
+left: 300px;
 }
 
 
