@@ -9,50 +9,44 @@ if(window.openDatabase){
     alert("Failed to open database, make sure your browser supports HTML5 web storage");
 }
 
+var captured = null;
+var highestZ = 0;
+var highestId = 0;
+
 function Note(){
     var self = this;
 
     var note = document.createElement('div');
     note.className = 'note';
-    note.addEventListener('mousedown',function(e){
-        return self.onMouseDown(e)
-    }, false);
-    note.addEventListener('click',function(){
-        return self.onNoteClick()
-    },false);
+    note.addEventListener('mousedown', function(e) { return self.onMouseDown(e) }, false);
+    note.addEventListener('click', function() { return self.onNoteClick() }, false);
     this.note = note;
 
     var close = document.createElement('div');
     close.className = 'closebutton';
-    close.addEventListener('click',function(e){
-        return self.close(e)
-    }, false);
+    close.addEventListener('click', function(event) { return self.close(event) }, false);
     note.appendChild(close);
 
-    var edit = createElement('div');
+    var edit = document.createElement('div');
     edit.className = 'edit';
-    edit.setAttribute('contenteditable',false);
-    edit.addEventListener('keyup',function(){
-        return self.OnKeyUp()
-    }, false);
+    edit.setAttribute('contenteditable', true);
+    edit.addEventListener('keyup', function() { return self.onKeyUp() }, false);
     note.appendChild(edit);
     this.editField = edit;
 
     var ts = document.createElement('div');
     ts.className = 'timestamp';
-    ts.addEventListener('mousedown',function(e){
-        return self.onMouseDown(e)
-    }, false);
+    ts.addEventListener('mousedown', function(e) { return self.onMouseDown(e) }, false);
     note.appendChild(ts);
     this.lastModified = ts;
 
     document.body.appendChild(note);
-    return this.
+    return this;
 }
 
 Note.prototype = {
     get id(){
-        if(!("_id" in this))
+        if (!("_id" in this))
             this._id = 0;
         return this._id;
     },
@@ -70,15 +64,15 @@ Note.prototype = {
     },
 
     get timestamp(){
-        if(!("_timestamp" in this))
+        if (!("_timestamp" in this))
             this._timestamp = 0;
         return this._timestamp;
     },
 
     set timestamp(x){
-        if(this._timestamp == x){
+        if (this._timestamp == x)
             return;
-        }
+
         this._timestamp = x;
         var date = new Date();
         date.setTime(parseFloat(x));
@@ -107,6 +101,52 @@ Note.prototype = {
 
     set zIndex(x){
         this.note.style.zIndex = x;
-    }
+    },
+
+    close: function(event){
+        this.cancelPendingSave();
+        var note = this;
+        db.transaction(function(tx){
+            tx.executeSql("DELETE FROM MyStickys WHERE id = ?", [note.id]);
+        });
+        document.body.removeChild(this.note);
+    },
+
+    saveSoon: function(){
+        this.cancelPendingSave();
+        var self = this;
+        this._saveTimer = setTimeout(function() { self.save() }, 200);
+    },
+
+    cancelPendingSave: function(){
+        if (!("_saveTimer" in this))
+            return;
+        clearTimeout(this._saveTimer);
+        delete this._saveTimer;
+    },
+
+    save: function(){
+        this.cancelPendingSave();
+
+        if ("dirty" in this) {
+            this.timestamp = new Date().getTime();
+            delete this.dirty;
+        }
+
+        var note = this;
+        db.transaction(function (tx)
+        {
+            tx.executeSql("UPDATE MyStickys SET note = ?, timestamp = ?, left = ?, top = ?, zindex = ? WHERE id = ?", [note.text, note.timestamp, note.left, note.top, note.zIndex, note.id]);
+        });
+    },
+
+    saveAsNew: function(){
+        this.timestamp = new Date().getTime();
+
+        var note = this;
+        db.transaction(function (tx) {
+            tx.executeSql("INSERT INTO MyStickys (id, note, timestamp, left, top, zindex) VALUES (?, ?, ?, ?, ?, ?)", [note.id, note.text, note.timestamp, note.left, note.top, note.zIndex]);
+        });
+    },
 
 }
