@@ -149,4 +149,52 @@ Note.prototype = {
         });
     },
 
+
+    onMouseDown: function(e){
+        captured = this;
+        this.startX = e.clientX - this.note.offsetLeft;
+        this.startY = e.clientY - this.note.offsetTop;
+        this.zIndex = ++highestZ;
+
+        var self = this;
+        if (!("mouseMoveHandler" in this)) {
+            this.mouseMoveHandler = function(e) { return self.onMouseMove(e) }
+            this.mouseUpHandler = function(e) { return self.onMouseUp(e) }
+        }
+
+        document.addEventListener('mousemove', this.mouseMoveHandler, true);
+        document.addEventListener('mouseup', this.mouseUpHandler, true);
+
+        return false;
+    },
+
+    onMouseMove: function(e){
+        if (this != captured)
+            return true;
+
+        this.left = e.clientX - this.startX + 'px';
+        this.top = e.clientY - this.startY + 'px';
+        return false;
+    },
+
+    onMouseUp: function(e){
+        document.removeEventListener('mousemove', this.mouseMoveHandler, true);
+        document.removeEventListener('mouseup', this.mouseUpHandler, true);
+
+        this.save();
+        return false;
+    },
+
+    onNoteClick: function(e){
+        this.editField.focus();
+        getSelection().collapseToEnd();
+    },
+
+    onKeyUp: function(){
+        this.dirty = true;
+        this.saveSoon();
+    },
+}
+
+
 }
