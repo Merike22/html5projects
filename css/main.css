@@ -1,8 +1,15 @@
-/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+
+html,
+button,
+input,
+select,
+textarea {
+color: #222;
+}
 
 html {
-color: #222;
-font-size: 1em;
+font-size: 13px;
 line-height: 1.4;
 }
 
@@ -27,9 +34,7 @@ padding: 0;
 
 audio,
 canvas,
-iframe,
 img,
-svg,
 video {
 vertical-align: middle;
 }
@@ -44,7 +49,7 @@ textarea {
 resize: vertical;
 }
 
-.browserupgrade {
+.browsehappy {
 margin: 0.2em 0;
 background: #ccc;
 color: #000;
@@ -55,102 +60,325 @@ padding: 0.2em 0;
 /* ==========================================================================
 Author's custom styles
 ========================================================================== */
-
-body {
-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-font-size: 13px;
-background: #ccc;
+a{
+color:#333;
+text-decoration:none;
 }
 
-ul {
-padding: 0;
-margin: 0;
+h2{
+font-size:25px;
 }
 
-
-#container {
-width: 85%;
-margin: 10px auto;
-overflow: auto;
-border-radius: 10px;
-background: white;
+ul,ol{
+margin:0;
+padding:0;
 }
 
-header#main {
-padding: 10px;
-background: #f4f4f4;
+.container{
+margin:0 auto;
+width:80%;
+overflow:hidden;
 }
 
-nav {
-height: 40px;
-background: #aaa;
-overflow: hidden;
+#main-header{
+height:50px;
+background:#333;
+overflow:hidden;
+margin-bottom:20px;
 }
 
-nav li {
-float: left;
-padding: 10px 10px 0 10px;
-display: inline;
+#branding{
+float:left;
+width:50%;
 }
 
-nav a {
-color: white;
-text-decoration: none;
+#branding h1{
+padding:5px 0 0 70px;
+color:#fff;
+margin:0 !important;
+}
+
+#branding img{
+position:absolute;
+width:60px;
+height:auto;
+}
+
+#main-nav{
+float:right;
+width:50%;
+padding-top:12px;
+}
+#main-nav ul{
+float:right;
+}
+
+#main-nav li{
+float:left;
+padding:3px 5px 0 5px;
+margin:0 15px;
+font-size:15px;
+text-transform:uppercase;
+font-weight:bold;
+list-style:square;
+color:#fff;
+}
+
+#main-nav a{
+color:#fff;
+}
+
+#content{
+float:left;
+width:63%;
+border: 1px solid #ccc;
+border-radius:10px;
+padding:0 20px 20px 20px;
+}
+
+article{
+border-bottom:1px dotted #ccc;
+padding:10px 0 20px 0;
+}
+
+article img{
+width:100%;
+}
+
+article h2{
+margin:0;
+padding-top:10px;
+}
+
+article .meta{
+margin:10px 0 10px 0;
+padding:5px;
+background:#333;
+color:#fff;
+}
+
+article .meta span{
+float:right;
+}
+
+article .readmore{
+background:#f4f4f4;
+color:#000;
+width:97%;
+display:block;
+text-align:center;
+padding:10px;
+border:1px solid #ccc;
+border-radius:10px;
+}
+
+article .readmore:hover{
+background:#ccc;
+}
+
+#sidebar{
+float:right;
+width:30%;
+}
+
+.search{
+float:right;
+}
+
+.search input[type="search"]{
+border:#ccc 1px solid;
+border-radius:5px;
+height:20px;
+width:85%;
+padding:3px;
+float:left;
+}
+
+.search input[type="image"]{
+width:10%;
+float:right;
+}
+
+#sub-nav{
+padding:20px 0 20px 0;
+}
+
+#sub-nav li{
+font-size:16px;
 font-weight: bold;
+padding:5px 0 5px 0;
+border-bottom: dotted 1px #333;
 }
 
-nav a:hover {
-color: black;
+#sub-nav a{
+color:#333;
 }
 
-
-main {
-padding: 20px;
-
+#sub-nav a:hover,#sub-nav a.active{
+color:#ff0000;
 }
 
-section#main {
-position: relative;
-width: 70%;
-float: left;
+.ad img{
+width:100%;
+margin-bottom:20px;
 }
 
-aside {
-width: 20%;
-float: right;
+#main-footer{
+background:#333;
+color:#fff;
+min-height:180px;
+margin-top:20px;
+overflow:auto;
 }
 
-footer {
-padding: 10px;
-text-align: center;
+#main-footer a{
+color:#fff;
 }
 
-#holder {
-position: absolute;
-top: 10px;
-left: 320px;
-font-size: 35px;
-width: 260px;
+#main-footer .copy{
+padding:20px 0 0 0;
 }
 
+#main-footer .footer-left{
+float:left;
+width:30%;
+}
 
+#main-footer .footer-right{
+float:right;
+width:70%;
+}
+
+#main-footer .footer-nav{
+float:left;
+font-size:15px;
+width:31%;
+padding:20px 0 20px 0;
+margin-right:10px;
+}
+
+#main-footer .footer-nav li{
+padding:5px 0 5px 0;
+border-bottom:dotted #666 1px;
+}
+
+#comments{
+margin-top:20px;
+}
+
+.comment-left{
+float:left;
+width:8%;
+}
+
+.comment-left img{
+width:100%;
+}
+
+.comment-right{
+float:right;
+width:90%;
+}
+
+.comment-form{
+margin-top:20px;
+padding:5px 20px 10px 20px;
+background:#333;
+color:#fff;
+border-radius:10px;
+}
+
+.comment-form input[type="text"],.comment-form input[type="email"]{
+border:#ccc 1px solid;
+border-radius:5px;
+height:20px;
+padding:3px;
+width:97%;
+}
+
+.comment-form textarea{
+border:#ccc 1px solid;
+border-radius:5px;
+padding:3px;
+width:97%;
+}
+
+.add-form input[type="text"]{
+border:#ccc 1px solid;
+border-radius:5px;
+height:20px;
+padding:3px;
+width:97%;
+}
+
+.add-form select{
+border:#ccc 1px solid;
+border-radius:5px;
+height:30px;
+padding:3px;
+width:98%;
+}
+
+.add-form textarea{
+border:#ccc 1px solid;
+border-radius:5px;
+padding:3px;
+width:97%;
+}
 
 /* ==========================================================================
 Media Queries
 ========================================================================== */
 
-@media only screen and (max-width: 600px) {
-
-section#main {
-    width: 100%;
-    float: none;
-    text-align: center;
+@media only screen and (max-width: 900px){
+#branding h1{
+    display:none;
 }
 
-aside {
-    width: 100%;
-    float: none;
-    text-align: center;
+#branding{
+    width:20%;
+}
+
+#main-nav{
+    width:80%;
+}
+
+#content{
+    float:none;
+    width:89%;
+}
+
+#sidebar{
+    float:none;
+    width:100%;
+}
+
+#main-footer  .footer-left,#main-footer .footer-right{
+    float:none;
+    width:100%;
+}
+
+#main-footer .footer-nav{
+    float:none;
+    width:100%;
+}
+
+#main-footer .copy{
+    text-align:center;
+}
+}
+
+@media only screen and (max-width: 580px){
+#main-nav li{
+    padding:3px 3px 0 3px;
+    margin:0 5px;
+    font-size:13px;
+    list-style:none;
+}
+
+#content{
+    float:none;
+    width:87%;
 }
 }
 
@@ -164,6 +392,20 @@ aside {
 /* ==========================================================================
 Helper classes
 ========================================================================== */
+
+.ir {
+background-color: transparent;
+border: 0;
+overflow: hidden;
+*text-indent: -9999px;
+}
+
+.ir:before {
+content: "";
+display: block;
+width: 0;
+height: 150%;
+}
 
 .hidden {
 display: none !important;
@@ -214,9 +456,7 @@ Print styles
 ========================================================================== */
 
 @media print {
-*,
-*:before,
-*:after {
+* {
     background: transparent !important;
     color: #000 !important;
     box-shadow: none !important;
@@ -236,8 +476,9 @@ abbr[title]:after {
     content: " (" attr(title) ")";
 }
 
-a[href^="#"]:after,
-a[href^="javascript:"]:after {
+.ir a:after,
+a[href^="javascript:"]:after,
+a[href^="#"]:after {
     content: "";
 }
 
@@ -258,6 +499,10 @@ img {
 
 img {
     max-width: 100% !important;
+}
+
+@page {
+    margin: 0.5cm;
 }
 
 p,
