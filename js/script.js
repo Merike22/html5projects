@@ -31,4 +31,37 @@ $(document).ready(function(){
 		createList(k, v);
 	});
 
+	//Click Handler
+		$('#navbar a').live('click', function(e){
+			var link = $(this);
+
+			//Add active class
+			link.addClass('active').siblings().removeClass('active');
+
+			$('#gallery').quicksand(link.data('list').find('li'));
+			e.preventDefault();
+		});
+
+		$('#navbar a:first').click();
+
+		//Create the lists
+		function createList(text,items){
+			//Create empty ul
+			var ul = $('<ul>',{'class':'hidden'});
+
+			$.each(items, function(){
+				$(this).clone().appendTo(ul)
+			});
+
+			//Add gallery div
+			ul.appendTo('#gallery');
+
+			//Create menu item
+			var a = $('<a>',{
+				html:text,
+				href:'#',
+				data:{list:ul}
+			}).appendTo('#navbar');
+		}
+
 });
