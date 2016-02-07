@@ -1,67 +1,33 @@
-$(document).ready(function(){
-	var items = $('#gallery li'),
-		itemsByTags = {};
+var db = null;
 
-	//Loop through tags
-	items.each(function(i){
-		var elem = $(this),
-			tags = elem.data('tags').split(',');
+if(window.openDatabase) {
+    db = openDatabase("NoteTest", "1.0", "Stickys Database", 10000000);
+    if (!db) {
+        alert("Failed to open database");
+    }
+}
+function Note() {
+    var self = this;
 
-		//Add data attribute for quicksand
-		elem.attr('data-id',i);
+    var note = document.createElement('div');
+    note.className = 'note';
+    note.addEventListener('mousedown', function (e) {
+        return self.onMouseDown(e)
+    }, false);
+    note.addEventListener('click', function () {
+        return self.onNoteClick()
+    }, false);
+    this.note = note;
 
-		$.each(tags,function(key,value){
-			//Remove whitespace
-			value = $.trim(value);
+    var close = document.createElement('div');
+    close.className = 'closebutton';
+    close.addEventListener('click', function (e) {
+        return self.close(e)
+    }, false);
+    note.appendChild(close);
 
-			if(!(value in itemsByTags)){
-				//Add empty value
-				itemsByTags[value] = [];
-			}
+    var edit = createElement('div');
+    edit.className = 'edit';
+    edit.setAttribute('contenteditable', false);
 
-			//Add image to array
-			itemsByTags[value].push(elem);
-		});
-	});
-
-	//Create "All Items" option
-	createList('All Items',items);
-
-	$.each(itemsByTags, function(k, v){
-		createList(k, v);
-	});
-
-	//Click Handler
-		$('#navbar a').live('click', function(e){
-			var link = $(this);
-
-			//Add active class
-			link.addClass('active').siblings().removeClass('active');
-
-			$('#gallery').quicksand(link.data('list').find('li'));
-			e.preventDefault();
-		});
-
-		$('#navbar a:first').click();
-
-		//Create the lists
-		function createList(text,items){
-			//Create empty ul
-			var ul = $('<ul>',{'class':'hidden'});
-
-			$.each(items, function(){
-				$(this).clone().appendTo(ul)
-			});
-
-			//Add gallery div
-			ul.appendTo('#gallery');
-
-			//Create menu item
-			var a = $('<a>',{
-				html:text,
-				href:'#',
-				data:{list:ul}
-			}).appendTo('#navbar');
-		}
-
-});
+}
