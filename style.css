@@ -1,6 +1,6 @@
 body{
     background: #000000 url(background.jpg) no-repeat top center;
-    font-family:arial, serif;
+    font-family:arial;
 }
 
 a{
@@ -16,7 +16,7 @@ canvas{
 .container{
     margin:30px auto 0 auto;
     width:600px;
-    overflow:auto;
+    oveflow:auto;
     position:relative;
 }
 
@@ -39,7 +39,7 @@ canvas{
     margin-right:5px;
     overflow:auto;
     background:#000000;
-    text-align:center;
+    text-alignment:center;
 }
 
 #reset_score{
