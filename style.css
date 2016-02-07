@@ -1,6 +1,6 @@
 body{
     background: #000000 url(background.jpg) no-repeat top center;
-    font-family:arial;
+    font-family:arial, serif;
 }
 
 a{
@@ -16,7 +16,7 @@ canvas{
 .container{
     margin:30px auto 0 auto;
     width:600px;
-    oveflow:auto;
+    overflow:auto;
     position:relative;
 }
 
@@ -31,7 +31,7 @@ canvas{
     overflow:auto;
 }
 
-.score{
+#score,#high_score{
     width:25%;
     height:50px;
     padding-top:20px;
@@ -39,7 +39,7 @@ canvas{
     margin-right:5px;
     overflow:auto;
     background:#000000;
-    text-alignment:center;
+    text-align:center;
 }
 
 #reset_score{
@@ -48,7 +48,7 @@ canvas{
 }
 
 #overlay{
-    /*display:none;*/
+    display:none;
     color:#ffffff;
     font-size:25px;
     text-align:center;
