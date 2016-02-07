@@ -113,4 +113,33 @@ $(document).ready(function(){
         return false;
     }
 
+    function checkscore(score){
+        if(localStorage.getItem('highscore') === null){
+            //If there is no high score
+            localStorage.setItem('highscore',score);
+        } else {
+            //If there is a high score
+            if(score > localStorage.getItem('highscore')){
+                localStorage.setItem('highscore',score);
+            }
+        }
+
+        $('#high_score').html('High Score: '+localStorage.highscore);
+    }
+
+    //Keyboard Controller
+    $(document).keydown(function(e){
+        var key = e.which;
+        if(key == "37" && d !="right") d  = "left";
+        else if(key == "38" && d != "down") d = "up";
+        else if(key == "39" && d != "left") d = "right";
+        else if(key == "40" && d != "up") d = "down";
+    });
 });
+
+function resetScore(){
+    localStorage.highscore = 0;
+    //Display High Score
+    highscorediv = document.getElementById('high_score');
+    highscorediv.innerHTML ='High Score: 0';
+}
