@@ -239,3 +239,16 @@ function loadNotes(){
 function modifiedString(date){
     return 'Note Last Modified: ' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 }
+
+function newNote(){
+    var note = new Note();
+    note.id = ++highestId;
+    note.timestamp = new Date().getTime();
+    note.left = Math.round(Math.random() * 400) + 'px';
+    note.top = Math.round(Math.random() * 500) + 'px';
+    note.zIndex = ++highestZ;
+    note.saveAsNew();
+}
+
+if (db != null)
+    addEventListener('load', loaded, false);
